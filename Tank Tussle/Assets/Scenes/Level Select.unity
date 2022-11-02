@@ -260,7 +260,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4846856331090100435, guid: 678d2495ab49e3544879bb7f3587c7df, type: 3}
       propertyPath: m_Name
-      value: Scene Manager 3
+      value: Scene Manager
       objectReference: {fileID: 0}
     - target: {fileID: 8895812287896639623, guid: 678d2495ab49e3544879bb7f3587c7df, type: 3}
       propertyPath: m_RootOrder
