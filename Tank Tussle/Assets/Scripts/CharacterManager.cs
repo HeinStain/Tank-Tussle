@@ -51,6 +51,7 @@ public class CharacterManager : MonoBehaviour
 
     void Start()
     {
+        InfoManager = GameObject.FindObjectOfType<InfoManager>();
         playerOneSelection = 1;
         UpdatePlayerOneColor(playerOneSelection);
 

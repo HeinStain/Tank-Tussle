@@ -6,7 +6,7 @@ public class PlayerOneController : MonoBehaviour
 {
     
     public Rigidbody2D rb2D;
-    public float thrust = 25;
+    public float thrust = 35;
 
     public float currentSpeed;
     public float maxSpeed = 1;
@@ -39,12 +39,12 @@ public class PlayerOneController : MonoBehaviour
 
 
         //Controls
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             leftInput = 1;
             leftTrackAnim.SetTrigger("Forward");
         } 
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             leftInput = -1;
             leftTrackAnim.SetTrigger("Backward");
@@ -56,12 +56,12 @@ public class PlayerOneController : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.Y))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             rightInput = 1;
             rightTrackAnim.SetTrigger("Forward");
         } 
-        else if (Input.GetKey(KeyCode.G))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             rightInput = -1;
             rightTrackAnim.SetTrigger("Backward");

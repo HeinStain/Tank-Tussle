@@ -6,7 +6,7 @@ public class PlayerTwoController : MonoBehaviour
 {
     
     public Rigidbody2D rb2D;
-    public float thrust = 25;
+    public float thrust = 35;
 
     public float currentSpeed;
     public float maxSpeed = 1;
