@@ -7,7 +7,7 @@ public class CharacterManager : MonoBehaviour
 {
 
     public SceneLoader SceneLoader;
-    public GameManager GameManager;
+    public InfoManager InfoManager;
 
     //Player 1
     public GameObject playerOneBody;
@@ -133,8 +133,8 @@ public class CharacterManager : MonoBehaviour
         if (playerOneReady && playerTwoReady)
         {
             StartCoroutine("StartNextLevel");
-            GameManager.SendMessage("StorePlayerOneColour", playerOneSelectedColor);
-            GameManager.SendMessage("StorePlayerTwoColour", playerTwoSelectedColor);
+            InfoManager.SendMessage("StorePlayerOneColour", playerOneSelectedColor);
+            InfoManager.SendMessage("StorePlayerTwoColour", playerTwoSelectedColor);
         }
     }
 

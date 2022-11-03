@@ -4,25 +4,50 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private InfoManager InfoManager;
 
-    public static GameManager Instance;
+    public GameObject playerPrefab;
+    
+    public GameObject playerOneSpawnPoint;
+    public GameObject playerTwoSpawnPoint;
 
-    public Color playerOneColor;
-    public Color playerTwoColor;
-
-    private void Awake()
+    void Start()
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+
+        InfoManager = GameObject.FindObjectOfType<InfoManager>();
+
+        SpawnPlayerOne();
+        SpawnPlayerTwo();
+        
     }
 
-    void StorePlayerOneColour(Color p1Color)
+
+    void SpawnPlayerOne()
     {
-        playerOneColor = p1Color;
+        //Instantiate Player One, Color Them, Apply Script
+        GameObject playerOne = Instantiate(playerPrefab, playerOneSpawnPoint.transform.position, Quaternion.identity);
+        playerOne.AddComponent<PlayerOneController>();
+
+        Color playerOneColor = InfoManager.playerOneColor;
+        GameObject playerOneBase = playerOne.transform.GetChild(0).GetChild(2).gameObject;
+        GameObject playerOneCannon = playerOne.transform.GetChild(0).GetChild(3).gameObject;
+        
+        playerOneBase.GetComponent<SpriteRenderer>().color = playerOneColor;
+        playerOneCannon.GetComponent<SpriteRenderer>().color = playerOneColor;
     }
 
-    void StorePlayerTwoColour(Color p2Color)
+    void SpawnPlayerTwo()
     {
-        playerTwoColor = p2Color;
+        //Instantiate Player Two, Color Them, Apply Script
+        GameObject playerTwo = Instantiate(playerPrefab, playerTwoSpawnPoint.transform.position, Quaternion.identity);
+        playerTwo.AddComponent<PlayerTwoController>();
+
+        Color playerTwoColor = InfoManager.playerTwoColor;
+        GameObject playerTwoBase = playerTwo.transform.GetChild(0).GetChild(2).gameObject;
+        GameObject playerTwoCannon = playerTwo.transform.GetChild(0).GetChild(3).gameObject;
+        
+        playerTwoBase.GetComponent<SpriteRenderer>().color = playerTwoColor;
+        playerTwoCannon.GetComponent<SpriteRenderer>().color = playerTwoColor;
     }
 }
+

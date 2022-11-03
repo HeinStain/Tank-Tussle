@@ -6,16 +6,25 @@ public class PlayerOneController : MonoBehaviour
 {
     
     public Rigidbody2D rb2D;
-    public float thrust = 0.1f;
-    
+    public float thrust = 25;
 
     public float currentSpeed;
     public float maxSpeed = 1;
 
-    public int angularChangeInDegrees = -20;
+    public int angularChangeInDegrees = -45;
 
     [SerializeField] private int leftInput = 0;
     [SerializeField] private int rightInput = 0;
+
+    private Animator leftTrackAnim;
+    private Animator rightTrackAnim;
+    
+    void Start()
+    {
+        rb2D = this.gameObject.GetComponent<Rigidbody2D>();
+        leftTrackAnim = this.gameObject.transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+        rightTrackAnim = this.gameObject.transform.GetChild(0).GetChild(1).GetComponent<Animator>();
+    }
 
     void FixedUpdate()
     {   
@@ -33,28 +42,34 @@ public class PlayerOneController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             leftInput = 1;
+            leftTrackAnim.SetTrigger("Forward");
         } 
         else if (Input.GetKey(KeyCode.S))
         {
             leftInput = -1;
+            leftTrackAnim.SetTrigger("Backward");
         }
         else 
         {
             leftInput = 0;
+            leftTrackAnim.SetTrigger("Idle");
         }
 
 
         if (Input.GetKey(KeyCode.Y))
         {
             rightInput = 1;
+            rightTrackAnim.SetTrigger("Forward");
         } 
         else if (Input.GetKey(KeyCode.G))
         {
             rightInput = -1;
+            rightTrackAnim.SetTrigger("Backward");
         }
         else 
         {
             rightInput = 0;
+            rightTrackAnim.SetTrigger("Idle");
         }
 
         //Left Positive  +   +  Right Positive
