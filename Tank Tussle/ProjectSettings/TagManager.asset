@@ -11,15 +11,16 @@ TagManager:
   - PlayerTwoCharge
   - PlayerOneSpawn
   - PlayerTwoSpawn
+  - Walls
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Bullet
+  - Walls
   - 
   - 
   - 

@@ -29,10 +29,12 @@ public class PlayerOneController : MonoBehaviour
         rightTrackAnim = this.gameObject.transform.GetChild(0).GetChild(1).GetComponent<Animator>();
         playerOneSpawnPoint = GameObject.FindWithTag("PlayerOneSpawn");
         GameManager = GameObject.FindObjectOfType<GameManager>();
+        AudioManager.instance.Play("Engine");
     }
 
     void FixedUpdate()
     {   
+        
         //Check Speed
         var vel = rb2D.velocity;
         currentSpeed = vel.magnitude; 
@@ -41,6 +43,7 @@ public class PlayerOneController : MonoBehaviour
         {
             currentSpeed = maxSpeed;
         }
+
 
 
         //Controls
@@ -58,6 +61,7 @@ public class PlayerOneController : MonoBehaviour
         {
             leftInput = 0;
             leftTrackAnim.SetTrigger("Idle");
+            
         }
 
 
@@ -70,6 +74,7 @@ public class PlayerOneController : MonoBehaviour
         {
             rightInput = -1;
             rightTrackAnim.SetTrigger("Backward");
+            
         }
         else 
         {
@@ -82,6 +87,7 @@ public class PlayerOneController : MonoBehaviour
         {
             //Go Forward
             rb2D.AddForce(transform.up * thrust);
+            AudioManager.instance.PitchUp("Engine");
         }
 
         //Left Negative  -   -  Right Negative
@@ -89,6 +95,7 @@ public class PlayerOneController : MonoBehaviour
         {
             //Go Backward
             rb2D.AddForce(-transform.up * thrust);
+            AudioManager.instance.PitchUp("Engine");
         }
 
         //Left Positive  +   o  Right Neutral
@@ -98,6 +105,7 @@ public class PlayerOneController : MonoBehaviour
             rb2D.AddForce(transform.up * thrust);
             var impulse = (angularChangeInDegrees * Mathf.Deg2Rad) * rb2D.inertia;
             rb2D.AddTorque(impulse, ForceMode2D.Impulse);
+            AudioManager.instance.PitchUp("Engine");
         }
 
         //Left Neutral   o   +  Right Positive
@@ -107,6 +115,7 @@ public class PlayerOneController : MonoBehaviour
             rb2D.AddForce(transform.up * thrust);
             var impulse = -(angularChangeInDegrees * Mathf.Deg2Rad) * rb2D.inertia;
             rb2D.AddTorque(impulse, ForceMode2D.Impulse);
+            AudioManager.instance.PitchUp("Engine");
         }
 
         //Left Negative  -   o  Right Neutral
@@ -116,6 +125,7 @@ public class PlayerOneController : MonoBehaviour
             rb2D.AddForce(-transform.up * thrust);
             var impulse = -(angularChangeInDegrees * Mathf.Deg2Rad) * rb2D.inertia;
             rb2D.AddTorque(impulse, ForceMode2D.Impulse);
+            AudioManager.instance.PitchUp("Engine");
         }
 
         //Left Neutral   o   -  Right Negative
@@ -125,6 +135,7 @@ public class PlayerOneController : MonoBehaviour
             rb2D.AddForce(-transform.up * thrust);
             var impulse = (angularChangeInDegrees * Mathf.Deg2Rad) * rb2D.inertia;
             rb2D.AddTorque(impulse, ForceMode2D.Impulse);
+            AudioManager.instance.PitchUp("Engine");
         }
 
         //Left Positive  +   -  Right Negative
@@ -133,6 +144,7 @@ public class PlayerOneController : MonoBehaviour
             //Right Rotate
             var impulse = (angularChangeInDegrees * Mathf.Deg2Rad) * rb2D.inertia;
             rb2D.AddTorque(impulse * 2, ForceMode2D.Impulse);
+            AudioManager.instance.PitchUp("Engine");
         }
 
         //Left Negative  -   +  Right Positive
@@ -141,7 +153,15 @@ public class PlayerOneController : MonoBehaviour
             //Left Rotate
             var impulse = -(angularChangeInDegrees * Mathf.Deg2Rad) * rb2D.inertia;
             rb2D.AddTorque(impulse * 2, ForceMode2D.Impulse);
+            AudioManager.instance.PitchUp("Engine");
         }
+        
+        //Left Negative  o   o  Right Positive
+        if (leftInput == 0 && rightInput == 0)
+        {
+            AudioManager.instance.PitchDown("Engine");
+        }
+
     }
 
 
@@ -166,6 +186,7 @@ public class PlayerOneController : MonoBehaviour
     public void Respawn()
     {
         Debug.Log("Respawning");
+        AudioManager.instance.Play("Spawn");
         iTween.ScaleTo(this.gameObject, new Vector3(1.25f,1.25f,1f), 0);
         iTween.RotateTo(this.gameObject, new Vector3(0,0,0), 0);
         rb2D.bodyType = RigidbodyType2D.Dynamic;

@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
 
         SpawnPlayerOne();
         SpawnPlayerTwo();
-        
+
     }
 
     void SpawnPlayerOne()
@@ -26,6 +26,7 @@ public class SpawnManager : MonoBehaviour
         GameObject playerOne = Instantiate(playerPrefab, playerOneSpawnPoint.transform.position, Quaternion.identity);
         playerOne.AddComponent<PlayerOneController>();
         playerOne.AddComponent<PlayerOneHealth>();
+        playerOne.tag = "Player";
         
 
         Color playerOneColor = InfoManager.playerOneColor;
@@ -43,6 +44,7 @@ public class SpawnManager : MonoBehaviour
         GameObject playerTwo = Instantiate(playerPrefab, playerTwoSpawnPoint.transform.position, Quaternion.identity);
         playerTwo.AddComponent<PlayerTwoController>();
         playerTwo.AddComponent<PlayerTwoHealth>();
+        playerTwo.tag = "Player";
 
         Color playerTwoColor = InfoManager.playerTwoColor;
         GameObject playerTwoBase = playerTwo.transform.GetChild(0).GetChild(2).gameObject;

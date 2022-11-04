@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO.Ports;
 
 public class PlayerOneCannonControls : MonoBehaviour
 {
@@ -17,8 +18,12 @@ public class PlayerOneCannonControls : MonoBehaviour
     public InfoManager InfoManager;
     public GameObject playerOneShotCharge;
 
+    private SerialPort stream = new SerialPort("COM2", 9600);
+    private string arduinoInput;
+
     void Start()
     {
+        stream.Open();
         
         point = this.transform.GetChild(0).gameObject;
         shotOrigin = this.transform.GetChild(1).gameObject;
@@ -30,16 +35,18 @@ public class PlayerOneCannonControls : MonoBehaviour
     }
     void Update()
     {
+        arduinoInput = stream.ReadLine();
+
         if (Input.GetKeyDown(KeyCode.F))  
         {
             Shoot();
         }
 
-        if (Input.GetKey(KeyCode.P)) //if var = 1
-        {;
+        if (int.Parse(arduinoInput) == 1) //if var = 1
+        {
             transform.RotateAround(point.transform.position, -transform.forward, rotateSpeed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.O)) //if var = 0
+        else if (int.Parse(arduinoInput) == 0) //if var = 0
         {
             transform.RotateAround(point.transform.position, transform.forward, rotateSpeed * Time.deltaTime);
         }
@@ -49,6 +56,7 @@ public class PlayerOneCannonControls : MonoBehaviour
     {
         if (shootable)
         {
+            AudioManager.instance.Play("Shot");
             GameObject bullet = Instantiate(bulletPrefab, shotOrigin.transform.position, shotOrigin.transform.rotation);
             bullet.GetComponent<SpriteRenderer>().color = InfoManager.playerOneColor;
             Rigidbody2D bulletRigidbody2D = bullet.GetComponent<Rigidbody2D>();

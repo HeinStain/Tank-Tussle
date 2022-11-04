@@ -53,12 +53,14 @@ public class CharacterManager : MonoBehaviour
 
     void Start()
     {
-        InfoManager = GameObject.FindObjectOfType<InfoManager>();
+        
         playerOneSelection = 1;
         UpdatePlayerOneColor(playerOneSelection);
 
-        playerTwoSelection = 1;
+        playerTwoSelection = 2;
         UpdatePlayerTwoColor(playerTwoSelection);
+        InfoManager = GameObject.FindObjectOfType<InfoManager>();
+        
     }
 
     void Update()
@@ -93,6 +95,7 @@ public class CharacterManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
+            AudioManager.instance.Play("Menu_Confirm");
             playerOneReady = true;
             playerOneReadyBox.GetComponent<Image>().color = new Color32(62, 162, 27, 255);
         }
@@ -115,6 +118,7 @@ public class CharacterManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
+                
                 if (playerTwoSelection >= 1)
                 {
                     playerTwoSelection--;
@@ -128,6 +132,7 @@ public class CharacterManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
+            AudioManager.instance.Play("Menu_Confirm");
             playerTwoReady = true;
             playerTwoReadyBox.GetComponent<Image>().color = new Color32(62, 162, 27, 255);
         }
@@ -162,15 +167,17 @@ public class CharacterManager : MonoBehaviour
     //Change the current color of Player 1
     public void UpdatePlayerOneColor(int playerOneSelection)
     {
-         p1_1Selected.GetComponent<Image>().enabled = false;
-         p1_2Selected.GetComponent<Image>().enabled = false;
-         p1_3Selected.GetComponent<Image>().enabled = false;
-         p1_4Selected.GetComponent<Image>().enabled = false;
-         p1_5Selected.GetComponent<Image>().enabled = false;
-         p1_6Selected.GetComponent<Image>().enabled = false;
-         p1_7Selected.GetComponent<Image>().enabled = false;
-         p1_8Selected.GetComponent<Image>().enabled = false;
-         
+        
+        p1_1Selected.GetComponent<Image>().enabled = false;
+        p1_2Selected.GetComponent<Image>().enabled = false;
+        p1_3Selected.GetComponent<Image>().enabled = false;
+        p1_4Selected.GetComponent<Image>().enabled = false;
+        p1_5Selected.GetComponent<Image>().enabled = false;
+        p1_6Selected.GetComponent<Image>().enabled = false;
+        p1_7Selected.GetComponent<Image>().enabled = false;
+        p1_8Selected.GetComponent<Image>().enabled = false;
+        
+        
         if (playerOneSelection == 1) 
         { 
             p1_1Selected.GetComponent<Image>().enabled = true;
@@ -214,19 +221,21 @@ public class CharacterManager : MonoBehaviour
         
         playerOneBody.GetComponent<Image>().color = playerOneSelectedColor;
         playerOneTurret.GetComponent<Image>().color = playerOneSelectedColor;
+        AudioManager.instance.Play("Menu_Move");
     }
 
     //Change the current color of Player 1
     public void UpdatePlayerTwoColor(int playerTwoSelection)
     {
-         p2_1Selected.GetComponent<Image>().enabled = false;
-         p2_2Selected.GetComponent<Image>().enabled = false;
-         p2_3Selected.GetComponent<Image>().enabled = false;
-         p2_4Selected.GetComponent<Image>().enabled = false;
-         p2_5Selected.GetComponent<Image>().enabled = false;
-         p2_6Selected.GetComponent<Image>().enabled = false;
-         p2_7Selected.GetComponent<Image>().enabled = false;
-         p2_8Selected.GetComponent<Image>().enabled = false;
+        
+        p2_1Selected.GetComponent<Image>().enabled = false;
+        p2_2Selected.GetComponent<Image>().enabled = false;
+        p2_3Selected.GetComponent<Image>().enabled = false;
+        p2_4Selected.GetComponent<Image>().enabled = false;
+        p2_5Selected.GetComponent<Image>().enabled = false;
+        p2_6Selected.GetComponent<Image>().enabled = false;
+        p2_7Selected.GetComponent<Image>().enabled = false;
+        p2_8Selected.GetComponent<Image>().enabled = false;
          
         if (playerTwoSelection == 1) 
         { 
@@ -271,5 +280,6 @@ public class CharacterManager : MonoBehaviour
         
         playerTwoBody.GetComponent<Image>().color = playerTwoSelectedColor;
         playerTwoTurret.GetComponent<Image>().color = playerTwoSelectedColor;
+        AudioManager.instance.Play("Menu_Move");
     }
 }

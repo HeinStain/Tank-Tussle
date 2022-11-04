@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class LevelSelect : MonoBehaviour
     private int selection = 1;
 
     public SceneLoader SceneLoader;
+
+    public GameObject fader;
 
     void Start()
     {
@@ -54,6 +57,10 @@ public class LevelSelect : MonoBehaviour
 
     IEnumerator StartGame(int selection)
     {
+        AudioManager.instance.Play("Menu_Confirm");
+        AudioManager.instance.Stop("BG_MainMenu");
+        yield return new WaitForSeconds(2);
+
         if (selection == 1)
         {
             SceneLoader.LoadLevel("Game_Cafe");
@@ -68,9 +75,11 @@ public class LevelSelect : MonoBehaviour
         }
         yield return null;
     }
+    
 
     void UpdateSelection()
     {
+        AudioManager.instance.Play("Menu_Move");
         map1Selected.SetActive(false);
         map2Selected.SetActive(false);
         map3Selected.SetActive(false);

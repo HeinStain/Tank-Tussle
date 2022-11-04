@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     {
         selection = 1;
         UpdateSelection();
+
     }
     // Update is called once per frame
     void Update()
@@ -47,6 +48,7 @@ public class MainMenu : MonoBehaviour
         }  
         if (Input.GetKeyDown(KeyCode.F))
         {
+            FindObjectOfType<AudioManager>().Play("Menu_Confirm");
             if (selection == 1)
             {
                 SceneLoader.LoadLevel("Character Select");
@@ -62,8 +64,10 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+
     void UpdateSelection()
     {
+        FindObjectOfType<AudioManager>().Play("Menu_Move");
         playSelected.SetActive(false);
         tutorialSelected.SetActive(false);
         quitSelected.SetActive(false);

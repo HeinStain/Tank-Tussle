@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3141938655412293324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3141938655412293314}
+  - component: {fileID: 3141938655412293315}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3141938655412293314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3141938655412293324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.18720117, y: 0.6069002, z: -20.088043}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3141938655412293315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3141938655412293324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51cfdfe169acd4b46a975505ce4a9980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BG_MainMenu
+    clip: {fileID: 8300000, guid: 31299f965b9dfb040bbb9e8c9ffda560, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Menu_Move
+    clip: {fileID: 8300000, guid: a771435b13412324d86fa83f592ef18a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Menu_Confirm
+    clip: {fileID: 8300000, guid: b1500590ae7d59d4fac321805561fef6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BG_Factory
+    clip: {fileID: 8300000, guid: ce31e5d30a9218c49bad5b121768d88e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BG_Boardwalk
+    clip: {fileID: 8300000, guid: cf29c692e849749c7a9d20d6575e744f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BG_Cafe
+    clip: {fileID: 8300000, guid: 7ab1220ebe7af44499c0009604beeeb2, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Engine
+    clip: {fileID: 8300000, guid: 5523c4f73c70a30469d6681ee3a5630c, type: 3}
+    volume: 0.3
+    pitch: 0.4
+    loop: 1
+    source: {fileID: 0}
+  - name: Engine2
+    clip: {fileID: 8300000, guid: 7018e74067e804949a930aadaf5c8367, type: 3}
+    volume: 0.3
+    pitch: 0.4
+    loop: 1
+    source: {fileID: 0}
+  - name: Shot
+    clip: {fileID: 8300000, guid: 6847d86dbf9c10447b16826fbdc36a5a, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Game_Over
+    clip: {fileID: 8300000, guid: 15b78a816cbde5542bffdb9fb42d6cc3, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fall
+    clip: {fileID: 8300000, guid: 18e04f383a2c47741ad897dca4de68e1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Spawn
+    clip: {fileID: 8300000, guid: b2b65fc043b6c024fabcaf0236dbd035, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Damage
+    clip: {fileID: 8300000, guid: 6ecf850633e0ad340aebc3089febdde2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

@@ -32,19 +32,32 @@ public class GameManager : MonoBehaviour
     {
         if (endScreen)
         {
+            AudioManager.instance.Stop("Engine");
+            AudioManager.instance.Stop("Engine2");
+            AudioManager.instance.Stop("BG_Factory");
+            AudioManager.instance.Stop("BG_Cafe");
+            AudioManager.instance.Stop("BG_Boardwalk");
             if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.G))
             {
-                Destroy(InfoManager.gameObject);
-                SceneLoader.ResetGame();
+                StartCoroutine(Reset());
+                
             }
         }
         
+    }
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(AudioManager.instance);
+        Destroy(InfoManager.gameObject);
+        SceneLoader.ResetGame();
     }
 
     public void PlayerOneHit()
     {
         playerOneHealth--;
         Debug.Log(playerOneHealth);
+        AudioManager.instance.Play("Damage");
 
         //Player1
         if (playerOneHealth == 2)
@@ -63,6 +76,7 @@ public class GameManager : MonoBehaviour
             victoryCanvas.enabled = true;
             victoryCanvas.gameObject.SetActive(true);
             endScreen = true;
+            AudioManager.instance.Play("Game_Over");
         }
         
     }
@@ -71,6 +85,7 @@ public class GameManager : MonoBehaviour
     {
         playerTwoHealth--;
         Debug.Log(playerTwoHealth);
+        AudioManager.instance.Play("Damage");
 
         //Player2
         if (playerTwoHealth == 2)
@@ -87,6 +102,7 @@ public class GameManager : MonoBehaviour
             victoryText.text = ("Player One Wins!");
             victoryCanvas.gameObject.SetActive(true);
             endScreen = true;
+            AudioManager.instance.Play("Game_Over");
 
         }
     }
