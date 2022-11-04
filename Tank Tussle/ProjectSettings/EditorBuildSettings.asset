@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Level Select.unity
     guid: 27c0109f62d8915468881056b9f11523
   - enabled: 1
+    path: Assets/Scenes/Game_Cafe.unity
+    guid: b2e0283d7a094a548b71e56946ec4878
+  - enabled: 1
     path: Assets/Scenes/Game_Factory.unity
-    guid: 478cabff0b9e15d49b1711e01858a6f0
+    guid: f8fe452babb097e4d97d389c0318950d
+  - enabled: 1
+    path: Assets/Scenes/Game_Boardwalk.unity
+    guid: 679c667e95ebb03469904bef07d159ea
   m_configObjects: {}

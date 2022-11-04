@@ -32,4 +32,9 @@ public class SceneLoader : MonoBehaviour
         gameCanvas.enabled = false;
         gameOverCanvas.enabled = true;
     }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }

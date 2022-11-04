@@ -18,12 +18,17 @@ public class PlayerOneController : MonoBehaviour
 
     private Animator leftTrackAnim;
     private Animator rightTrackAnim;
+
+    public GameObject playerOneSpawnPoint;
+    public GameManager GameManager;
     
     void Start()
     {
         rb2D = this.gameObject.GetComponent<Rigidbody2D>();
         leftTrackAnim = this.gameObject.transform.GetChild(0).GetChild(0).GetComponent<Animator>();
         rightTrackAnim = this.gameObject.transform.GetChild(0).GetChild(1).GetComponent<Animator>();
+        playerOneSpawnPoint = GameObject.FindWithTag("PlayerOneSpawn");
+        GameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     void FixedUpdate()
@@ -138,5 +143,34 @@ public class PlayerOneController : MonoBehaviour
             rb2D.AddTorque(impulse * 2, ForceMode2D.Impulse);
         }
     }
-    
+
+
+    //Falling in Holes Logic
+    void FallToDeath()
+    {
+        Debug.Log("Fell to death");
+        rb2D.isKinematic = true;
+        rb2D.velocity = new Vector2(0,0);
+        currentSpeed = 0;
+        iTween.ScaleTo(this.gameObject, new Vector3(0,0,0), 2);
+        StartCoroutine(Fall());
+    }
+
+    IEnumerator Fall()
+    {
+        yield return new WaitForSeconds(2);
+        Respawn();
+        yield return null;
+    }
+
+    public void Respawn()
+    {
+        Debug.Log("Respawning");
+        iTween.ScaleTo(this.gameObject, new Vector3(1.25f,1.25f,1f), 0);
+        iTween.RotateTo(this.gameObject, new Vector3(0,0,0), 0);
+        rb2D.bodyType = RigidbodyType2D.Dynamic;
+        transform.position = playerOneSpawnPoint.transform.position;
+        GameManager.PlayerOneHit();
+        
+    }
 }

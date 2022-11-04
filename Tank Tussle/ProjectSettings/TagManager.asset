@@ -6,6 +6,11 @@ TagManager:
   tags:
   - SceneManager
   - Colorable
+  - Bullet
+  - PlayerOneCharge
+  - PlayerTwoCharge
+  - PlayerOneSpawn
+  - PlayerTwoSpawn
   layers:
   - Default
   - TransparentFX
@@ -45,4 +50,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3636115921
+    locked: 0
+  - name: Bullet
+    uniqueID: 3668543011
+    locked: 0
+  - name: GameOver
+    uniqueID: 1982533181
     locked: 0

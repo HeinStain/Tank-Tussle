@@ -9,6 +9,8 @@ public class CharacterManager : MonoBehaviour
     public SceneLoader SceneLoader;
     public InfoManager InfoManager;
 
+    public Text countdownText;
+
     //Player 1
     public GameObject playerOneBody;
     public GameObject playerOneTurret;
@@ -64,7 +66,7 @@ public class CharacterManager : MonoBehaviour
         //Player One Controls
         if (!playerOneReady)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (playerOneSelection <= 8)
                 {
@@ -76,7 +78,7 @@ public class CharacterManager : MonoBehaviour
                 }
                 UpdatePlayerOneColor(playerOneSelection);
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 if (playerOneSelection >= 1)
                 {
@@ -89,7 +91,7 @@ public class CharacterManager : MonoBehaviour
                 UpdatePlayerOneColor(playerOneSelection);
             }       
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             playerOneReady = true;
             playerOneReadyBox.GetComponent<Image>().color = new Color32(62, 162, 27, 255);
@@ -99,7 +101,7 @@ public class CharacterManager : MonoBehaviour
          //Player Two Controls
         if (!playerTwoReady)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 if (playerTwoSelection <= 8)
                 {
@@ -111,7 +113,7 @@ public class CharacterManager : MonoBehaviour
                 }
                 UpdatePlayerTwoColor(playerTwoSelection);
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 if (playerTwoSelection >= 1)
                 {
@@ -124,24 +126,36 @@ public class CharacterManager : MonoBehaviour
                 UpdatePlayerTwoColor(playerTwoSelection);
             }       
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             playerTwoReady = true;
             playerTwoReadyBox.GetComponent<Image>().color = new Color32(62, 162, 27, 255);
         }
 
         //Final Ready Check
-        if (playerOneReady && playerTwoReady)
+        if (playerOneReady && playerTwoReady && nextLevelCountdown == null)
         {
-            StartCoroutine("StartNextLevel");
+            nextLevelCountdown = StartCoroutine(StartNextLevel());
+            //InfoManager.StorePlayerOneColour(playerOneSelectedColor); 
             InfoManager.SendMessage("StorePlayerOneColour", playerOneSelectedColor);
             InfoManager.SendMessage("StorePlayerTwoColour", playerTwoSelectedColor);
         }
     }
 
+    Coroutine nextLevelCountdown;
+
     IEnumerator StartNextLevel()
     {
-        yield return new WaitForSeconds(3);
+        countdownText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1);
+        countdownText.text = "2";
+        yield return new WaitForSeconds(1);
+        countdownText.text = "1";
+        yield return new WaitForSeconds(1);
+        countdownText.text = "0";
+        yield return new WaitForSeconds(1);
+
+        nextLevelCountdown = null;
         SceneLoader.LoadLevel("Level Select");
     }
 
