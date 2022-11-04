@@ -47,6 +47,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\LevelSelect.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\PixelGrid.cs" />
      <Compile Include="Assets\Scripts\PlayerOneCannonControls.cs" />
